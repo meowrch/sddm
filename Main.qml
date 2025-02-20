@@ -15,6 +15,23 @@ Item {
     height: Screen.height
     width: Screen.width
 
+    Image {
+        id: background
+        
+        anchors.fill: parent
+        height: parent.height
+        width: parent.width
+        fillMode: Image.PreserveAspectCrop
+
+        source: config.Background
+
+        asynchronous: false
+        cache: true
+        mipmap: true
+        clip: true
+        visible: true
+    }
+    
     MediaPlayer {
         id: mediaPlayer
         source: config.VideoBackground
@@ -44,23 +61,6 @@ Item {
         fillMode: VideoOutput.PreserveAspectCrop
         source: mediaPlayer
         visible: mediaPlayer.hasVideo
-    }
-
-    Image {
-        id: background
-        
-        anchors.fill: parent
-        height: parent.height
-        width: parent.width
-        fillMode: Image.PreserveAspectCrop
-
-        source: config.Background
-
-        asynchronous: false
-        cache: true
-        mipmap: true
-        clip: true
-        visible: !mediaPlayer.hasVideo || mediaPlayer.playbackState === MediaPlayer.StoppedState
     }
 
     Item {
